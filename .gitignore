@@ -1,0 +1,8 @@
+# Python specific
+venv
+
+# IDE specific
+.idea
+
+# Project specific (We don't want to upload gis data to the git)
+gis-projects
