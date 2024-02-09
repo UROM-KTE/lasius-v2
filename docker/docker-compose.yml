@@ -1,0 +1,14 @@
+version: '3.9'
+
+services:
+  lasius-dev-database:
+    build: .
+    container_name: lasius_app_dev_db
+    restart: on-failure
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db:${PGDATA}
+    environment:
+      PGDATA: ${PGDATA}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
