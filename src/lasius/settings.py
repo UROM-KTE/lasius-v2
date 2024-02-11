@@ -10,13 +10,15 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
-from pathlib import Path
+from dotenv import load_dotenv
+import os
 
 import psycopg
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, '../docker', '.env'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -28,7 +30,6 @@ SECRET_KEY = 'django-insecure-n2zw9x_uy80=!a=+tqo1$^v&uw#_&%w(t0py%*95$0crz!he*^
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -72,21 +73,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'lasius.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'lasius',
-        'USER': 'lasius',
-        'PASSWORD': 'lasius',
+        'NAME': os.getenv("DATABASE"),
+        'USER': os.getenv("USER"),
+        'PASSWORD': os.getenv("PASSWORD"),
         'HOST': 'localhost',
         'PORT': '5432'
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
@@ -106,7 +105,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
@@ -117,7 +115,6 @@ TIME_ZONE = 'CET'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.0/howto/static-files/

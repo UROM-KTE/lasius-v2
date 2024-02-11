@@ -1,4 +1,4 @@
-FROM postgres:16-bullseye
+FROM postgres:14-bullseye
 
 ENV POSTGIS_MAJOR 3
 ENV POSTGIS_VERSION 3.4.1+dfsg-1.pgdg110+1
@@ -15,7 +15,7 @@ RUN apt-get update \
       && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /docker-entrypoint-initdb.d
-COPY ["1_initdb-postgis.sh", "2_initdb-lasius-app.sh", "/docker-entrypoint-initdb.d/"]
+COPY ["1_initdb-postgis.sh", ".env", "/docker-entrypoint-initdb.d/"]
 COPY ./update-postgis.sh /usr/local/bin
 
 RUN echo "hu_HU UTF-8" >> /etc/locale.gen && locale-gen

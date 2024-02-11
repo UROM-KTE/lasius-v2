@@ -12,28 +12,29 @@
 
 #### Setting up environment variables
 
-There are 2 environment variables in the project. One is for the docker,
-the other one is for the Django application.
-
 ##### Docker configuration
+
 The file must be `{project_root}/docker/.env`.
 
 Example:
 
 ```
-# Docker environment
 COMPOSE_PROJECT_NAME=lasius
 COMPOSE_FILE=docker-compose.yml
-
-# Postgres administration for docker-compose.yml
 PGDATA=/var/lib/postgresql/data/pgdata
+POSTGRES_USERNAME=postgres
 POSTGRES_PASSWORD=postgres
+USER=lasiusdev
+DATABASE=lasiusdev
+PASSWORD=lasiusdev
 ```
+
+The only variable cannot pass to the script is the password of the new user.
+You have to set it in the `docker/init-db.sh` script too.
 
 ##### Django configuration
 
-The file must be `{project_root}/.env`.
-
+The Django environment uses the same file, so you don't have to take care of it.
 
 #### Install development environment
 

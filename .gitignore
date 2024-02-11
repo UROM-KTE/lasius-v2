@@ -1,11 +1,16 @@
 # Python specific
 .venv
+venv/
 
 # IDE specific
 .idea
+.vscode
 
 # Environment variables
 .env
+
+Dev Database files
+/docker/db/
 
 #App content
 media/
